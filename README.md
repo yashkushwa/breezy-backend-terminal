@@ -1,73 +1,57 @@
-# Welcome to your Lovable project
 
-## Project info
+# Web Terminal
 
-**URL**: https://lovable.dev/projects/c71a0b19-ee27-4c53-927f-8d3b5dbbc3bd
+A web-based terminal emulator built with Python Flask backend and xterm.js frontend.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Real terminal emulation in the browser
+- Supports all common terminal commands
+- Beautiful modern UI with a dark theme
+- Responsive design that works on mobile and desktop
 
-**Use Lovable**
+## Installation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c71a0b19-ee27-4c53-927f-8d3b5dbbc3bd) and start prompting.
+1. Install the Python requirements:
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+pip install -r requirements.txt
+```
 
-**Use your preferred IDE**
+2. Build the frontend (for production):
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+npm run build
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Running the Terminal
 
-Follow these steps:
+Simply run the Python server:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+python server.py
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Then open your browser to [http://localhost:8080](http://localhost:8080)
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Development
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+For development, you can run:
+
+```bash
+# Terminal backend
+python server.py
+
+# Frontend development server (in another terminal)
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Technologies Used
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Backend: Python Flask, flask-socketio
+- Frontend: React, xterm.js, Tailwind CSS
+- Communication: WebSockets via Socket.IO
 
-**Use GitHub Codespaces**
+## Security Note
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c71a0b19-ee27-4c53-927f-8d3b5dbbc3bd) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This terminal provides direct access to your system through a shell. Only use it in trusted environments and never expose it to the public internet without proper authentication and security measures.

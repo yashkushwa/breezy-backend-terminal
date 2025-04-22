@@ -8,6 +8,15 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      '/socket.io': {
+        target: 'ws://localhost:8080',
+        ws: true
+      },
+      '/health': {
+        target: 'http://localhost:8080'
+      }
+    }
   },
   plugins: [
     react(),
