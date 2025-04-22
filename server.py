@@ -119,7 +119,9 @@ def index():
     if not os.path.exists('./dist/index.html'):
         return "<html><body style='font-family: sans-serif; padding: 20px; line-height: 1.6;'>" \
                "<h1 style='color: #e53e3e;'>Error: Frontend not built</h1>" \
-               "<p>The web terminal frontend has not been pre-built. The frontend needs to be pre-built for this application to work.</p>" \
+               "<p>The web terminal frontend has not been pre-built. To build the frontend, run:</p>" \
+               "<pre style='background: #f0f0f0; padding: 12px; border-radius: 5px;'>npm run build</pre>" \
+               "<p>After the frontend is built, restart this server.</p>" \
                "</body></html>"
     return app.send_static_file('index.html')
 
@@ -164,8 +166,10 @@ if __name__ == '__main__':
     # Display clear instructions
     if not os.path.exists('./dist'):
         print("\n\033[91mERROR: Frontend not pre-built!\033[0m")
-        print("\033[93mThe frontend needs to be pre-built for this application to work.\033[0m")
-    else:
-        print("\033[92mStarting terminal server on http://localhost:8080\033[0m")
-        print("Press Ctrl+C to stop the server")
-        socketio.run(app, host='0.0.0.0', port=8080, debug=True, allow_unsafe_werkzeug=True)
+        print("\033[93mTo build the frontend, run:\033[0m")
+        print("\033[96mnpm install && npm run build\033[0m")
+        print("\033[93mOr manually create the dist directory with the built files.\033[0m")
+    
+    print("\033[92mStarting terminal server on http://localhost:8080\033[0m")
+    print("Press Ctrl+C to stop the server")
+    socketio.run(app, host='0.0.0.0', port=8080, debug=True, allow_unsafe_werkzeug=True)
