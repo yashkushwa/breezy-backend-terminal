@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
@@ -13,6 +12,11 @@ import signal
 import threading
 import time
 
+# Check if dist directory exists, if not display a useful error
+if not os.path.exists('./dist'):
+    print("ERROR: 'dist' directory not found! Make sure to build the frontend first with 'npm run build'")
+    print("You can run './start.sh' which will build the frontend and start the server")
+    
 app = Flask(__name__, static_folder='./dist', static_url_path='/')
 CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -150,6 +154,16 @@ def handle_ping():
     emit('pong')
 
 if __name__ == '__main__':
-    print("Starting terminal server on http://localhost:8080")
+    # Display clear instructions
+    if not os.path.exists('./dist'):
+        print("\n\033[91mERROR: Frontend not built! Building now...\033[0m")
+        try:
+            subprocess.run(["npm", "run", "build"], check=True)
+            print("\033[92mFrontend built successfully!\033[0m")
+        except subprocess.CalledProcessError:
+            print("\033[91mFailed to build frontend. Please run 'npm run build' manually.\033[0m")
+            exit(1)
+            
+    print("\033[92mStarting terminal server on http://localhost:8080\033[0m")
     print("Press Ctrl+C to stop the server")
     socketio.run(app, host='0.0.0.0', port=8080, debug=True, allow_unsafe_werkzeug=True)
